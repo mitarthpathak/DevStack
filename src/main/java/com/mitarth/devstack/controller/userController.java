@@ -12,6 +12,10 @@ public class userController {
     @Autowired
     private userService userservice;
 
+    @GetMapping("/welcome")
+    public String welocme() {
+        return "Welcome to DevStack";
+    }
     @PostMapping("/register")
     public Users register(@RequestBody Users users){
         return userservice.register(users);
