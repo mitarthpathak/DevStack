@@ -21,7 +21,7 @@ public class Users {
         return id;
     }
 
-    public Integer setId(Integer id){
+    public void setId(Integer id){
         this.id = id;
     }
 
