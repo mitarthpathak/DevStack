@@ -21,6 +21,7 @@ public class TaskController {
     public Task getTask(@PathVariable Long id){
         return service.getTask(id);
     }
+
     @PostMapping
     public Task createTask(@RequestBody Task task){
         return service.createTask(task);

@@ -1,8 +1,7 @@
 package com.mitarth.devstack.model;
 
 import jakarta.persistence.*;
-import org.apache.catalina.User;
-
+import com.mitarth.devstack.model.Users;
 import java.time.LocalDate;
 
 @Entity
@@ -60,16 +59,16 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Users users) {
+        this.users = users;
     }
 
     @ManyToOne
     @JoinColumn(name= "user_id")
-    private User user;
+    private Users users;
 
 }
