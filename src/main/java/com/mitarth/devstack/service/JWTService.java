@@ -1,12 +1,14 @@
 package com.mitarth.devstack.service;
 
-import org.jspecify.annotations.Nullable;
-import org.springframework.cache.interceptor.KeyGenerator;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Date;
@@ -23,7 +25,7 @@ public class JWTService {
         try{
             KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
             SecretKey key = keyGenerator.generateKey();
-            secretKey = Base64.getEncoder().encodeToString(Key.getEncoded());
+            secretKey = Base64.getEncoder().encodeToString(key.getEncoded());
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
@@ -46,7 +48,7 @@ public class JWTService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public static String extractUserName(String token){
+    public static String extractUsername(String token){
         return extractClaim(token, Claims::getSubject);
     }
 
@@ -55,7 +57,7 @@ public class JWTService {
         return claimResolver.apply(claims);
     }
 
-    public static Claims  extractAllClaims(String token){
+    public static Claims extractAllClaims(String token){
         return Jwts.parser()
                 .verifyWith(getKey())
                 .build()
@@ -70,8 +72,9 @@ public class JWTService {
         return extractExpiration(token).before(new Date());
     }
     public static boolean validateToken(String token, UserDetails userDetails){
-        String username = extractUserName(token);
+        String username = extractUsername(token);
         return username.equals(userDetails.getUsername())
                 && !isTokenExpired(token);
     }
+
 }

@@ -2,18 +2,19 @@ package com.mitarth.devstack.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import org.jspecify.annotations.Nullable;
+
 @Entity
 public class Users {
     @Id
     private Integer id;
     private String username;
     private String password;
+
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public @Nullable Object getUsername() {
+    public String getUsername() {
         return username;
     }
 
