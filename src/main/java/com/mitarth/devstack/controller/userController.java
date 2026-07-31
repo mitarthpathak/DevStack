@@ -1,5 +1,7 @@
 package com.mitarth.devstack.controller;
 
+import com.mitarth.devstack.dto.LoginRequest;
+import com.mitarth.devstack.dto.RegisterRequest;
 import com.mitarth.devstack.model.Users;
 import com.mitarth.devstack.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +19,16 @@ public class userController {
     public String welocme() {
         return "Welcome to DevStack";
     }
+
     @PostMapping("/register")
-    public Users register(@RequestBody Users users){
-        return userservice.register(users);
+    public Users register(@RequestBody RegisterRequest request) {
+        return userservice.register(request);
     }
 
     //if user ever reach this endpoint he/she will get their own JWT token by which they logged in
     //sounds cool right??
     @PostMapping("/login")
-    public String login(@RequestBody Users users){
-        return userservice.verify(users);
+    public String login(@RequestBody LoginRequest request) {
+        return userservice.verify(request);
     }
 }
