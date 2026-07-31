@@ -60,15 +60,15 @@ public class Task {
     }
 
     public Users getUser() {
-        return users;
+        return user;
     }
 
     public void setUser(Users users) {
-        this.users = users;
+        this.user = users;
     }
 
     @ManyToOne
     @JoinColumn(name= "user_id")
-    private Users users;
+    private Users user;
 
 }

@@ -21,6 +21,9 @@ public class userController {
     public Users register(@RequestBody Users users){
         return userservice.register(users);
     }
+
+    //if user ever reach this endpoint he/she will get their own JWT token by which they logged in
+    //sounds cool right??
     @PostMapping("/login")
     public String login(@RequestBody Users users){
         return userservice.verify(users);
