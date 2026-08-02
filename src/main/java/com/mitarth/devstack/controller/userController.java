@@ -17,7 +17,7 @@ public class userController {
 
     @GetMapping("/welcome")
     public String welocme() {
-        return "Welcome to DevStack";
+        return "Welcome to DevStack, this is a sample landing page response ";
     }
 
     @PostMapping("/register")
