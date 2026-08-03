@@ -10,14 +10,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 @RestController
 public class userController {
     @Autowired
     private userService userservice;
 
     @GetMapping("/welcome")
-    public String welocme() {
-        return "Welcome to DevTask";
+    public Map<String, Object> welcome() {
+        Map<String, Object> response = new LinkedHashMap<>();
+        response.put("message", "Welcome to DevStack 🚀");
+        response.put("description", "A simple user auth backend built with Spring Boot (register + login with JWT).");
+
+        Map<String, String> endpoints = new LinkedHashMap<>();
+        endpoints.put("POST /register", "Create a new user. Body: { \"username\": \"\", \"email\": \"\", \"password\": \"\" }");
+        endpoints.put("POST /login", "Login and get your JWT token. Body: { \"email\": \"\", \"password\": \"\" }");
+        response.put("endpoints", endpoints);
+
+        response.put("note", "Use the token from /login in the Authorization header (Bearer <token>) for protected routes.");
+        response.put("github", "https://github.com/mitarthpathak/DevTask");
+
+        return response;
     }
 
     @PostMapping("/register")
