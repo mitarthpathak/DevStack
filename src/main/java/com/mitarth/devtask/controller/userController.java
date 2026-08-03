@@ -18,10 +18,10 @@ public class userController {
     @Autowired
     private userService userservice;
 
-    @GetMapping("/welcome")
+    @GetMapping("/")
     public Map<String, Object> welcome() {
         Map<String, Object> response = new LinkedHashMap<>();
-        response.put("message", "Welcome to DevStack 🚀");
+        response.put("message", "Hello!!!!!!!!, Welcome to DevStack 🚀");
         response.put("description", "A simple user auth backend built with Spring Boot (register + login with JWT).");
 
         Map<String, String> endpoints = new LinkedHashMap<>();
