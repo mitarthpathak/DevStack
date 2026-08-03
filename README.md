@@ -1,6 +1,6 @@
 # DevTask (DevStack)
 
-A Spring Boot REST API for managing personal tasks, secured with JWT-based authentication. Each user registers/logs in and manages their own set of tasks.
+A Spring Boot REST API for managing personal tasks, secured with JWT-based authentication. Each user registers/logs in and manages their own set of tasks, used many to one relation and postgreSQL for database
 
 ## Tech Stack
 
